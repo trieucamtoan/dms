@@ -41,10 +41,14 @@ function LoginForm(props) {
         setCloseButtonTitleModal("Close");
         setError(false);
         
+        //Slice the array response and store jwt token & role privilleges in localStorage
         //Set JWT Token to local storage
-        var jwtToken = response.data;
+        var jwtToken = response.data.slice(0,1);
         localStorage.setItem("token", jwtToken);
         localStorage.setItem("isLoggedIn", "true");
+        //Store array of privilleges in localStorage
+        var privilleges = response.data.slice(1);
+        localStorage.setItem("privilleges", privilleges);
 
         console.log(props.history)
         props.history.push("/dashboard")

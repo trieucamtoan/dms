@@ -15,6 +15,9 @@ class MessageController extends Component {
         else if (message.status === 400){
             return false
         }
+
+        //Handling error 405 Method Not Allowed, 403 Forbidden
+
         //Handling GET request and error request
         else {
             return message

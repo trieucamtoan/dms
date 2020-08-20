@@ -28,6 +28,21 @@ class RequestServer extends Component{
             return null
         }
     }
+
+    async getAllUsers(token) {
+        try {
+            var response = await axios.get(getServerLocation() + '/user/all', {
+            headers: {
+                'Authorization' : `Bearer ${token}`
+            }})
+            return response
+        }
+        catch (error){
+            console.log(error)
+            return null
+        }
+    }
 }
 //Using new operator so we can access function inside the class from outside
 export default new RequestServer();
+
