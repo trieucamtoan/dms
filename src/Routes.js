@@ -4,6 +4,7 @@ import Register from './components/user/Register';
 import HomePage from './components/home/HomePage';
 import Login from './components/user/Login';
 import Dashboard from './components/home/Dashboard';
+import AdminDashboard from './components/admin/AdminDashboard';
 import Logout from './components/user/Logout';
 
 const Routes = () => (
@@ -14,6 +15,7 @@ const Routes = () => (
     <PublicRoute restricted = {false} exact path= '/logout' component={Logout}/>
     
     <PrivateRoute exact path= '/dashboard' component = {Dashboard}/>
+    <AdminRoute exact path='/admin-dashboard' component = {AdminDashboard}/>
   </Switch>
 )
 
@@ -37,7 +39,7 @@ const PublicRoute = ({component: Component, restricted, ...rest}) => {
 const PrivateRoute = ({component: Component, authed, ...rest}) => {
   return (
       <Route {...rest} render={(props) => (
-          localStorage.getItem('isLoggedIn') === "true"
+          (localStorage.getItem('isLoggedIn') === "true" && localStorage.getItem('privilleges').includes("USER") === true)
               ? <Component {...props} />
               : <Redirect to={{
                   pathname: '/login',
@@ -45,6 +47,19 @@ const PrivateRoute = ({component: Component, authed, ...rest}) => {
               }}/>
       )}/>
 
+  )
+}
+
+const AdminRoute = ({component: Component, authed, ...rest}) => {
+  return (
+      <Route {...rest} render={(props) => (
+          (localStorage.getItem('isLoggedIn') === "true" && localStorage.getItem('privilleges').includes("ADMIN") === true)
+              ? <Component {...props} />
+              : <Redirect to={{
+                  pathname: '/login',
+                  state: {from: props.location}
+              }}/>
+      )}/>
   )
 }
 

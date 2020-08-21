@@ -42,6 +42,48 @@ class RequestServer extends Component{
             return null
         }
     }
+
+    async updateUserUserName(token, id, username){
+        try {
+            var response = await axios.put(getServerLocation() + '/user/' + id + '/username', username, {
+                headers: {
+                    'Authorization' : `Bearer ${token}`
+                }})
+            return response
+        }
+        catch(error){
+            console.log(error)
+            return null
+        }
+    }
+
+    async updateUserEmail(token, id, email){
+        try {
+            var response = await axios.put(getServerLocation() + '/user/' + id + '/email', email, {
+                headers: {
+                    'Authorization' : `Bearer ${token}`
+                }})
+            return response
+        }
+        catch(error){
+            console.log(error)
+            return null
+        }
+    }
+
+    async updateUserPassword(token, id, password){
+        try {
+            var response = await axios.put(getServerLocation() + '/user/' + id + '/password', password, {
+                headers: {
+                    'Authorization' : `Bearer ${token}`
+                }})
+            return response
+        }
+        catch(error){
+            console.log(error)
+            return null
+        }
+    }
 }
 //Using new operator so we can access function inside the class from outside
 export default new RequestServer();
