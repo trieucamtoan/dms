@@ -7,9 +7,16 @@ import AddUserModal from './AddUserModal';
 
 const AdminDashboard = () => {
     const [users, setUsers] = useState([]);
-    const token = localStorage.getItem('token');
     
+    const updateUserList = (user) => {
+        setUsers({
+            ...users, 
+            user
+        })
+    }
+
     const getUserData = async() => {
+        const token = localStorage.getItem('token');
         var response = await RequestServer.getAllUsers(token)
         var message = MessageController.accept(response)
         if (message){
@@ -17,15 +24,6 @@ const AdminDashboard = () => {
         }
         console.log("message: ", message)
     }
-
-    const updateUserList = (user) => {
-        
-        setUsers({
-            ...users, 
-            user
-        })
-    }
-
 
     useEffect(() => {
         getUserData();

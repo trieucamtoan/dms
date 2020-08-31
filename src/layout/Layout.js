@@ -1,5 +1,6 @@
 import React from 'react';
 import { Nav, Navbar} from 'react-bootstrap';
+
 export const NavigationBar = () => {
   const isLoggedIn = () => {
     return (localStorage.getItem("isLoggedIn") === "true")

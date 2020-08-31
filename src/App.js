@@ -5,6 +5,7 @@ import './App.css';
 import {NavigationBar} from '../src/layout/Layout';
 import Routes from './Routes';
 
+export const add = (x,y) => x + y;
 
 function App() {
   return (

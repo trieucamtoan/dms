@@ -1,9 +1,15 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 import App from './App';
+// import {add} from './App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+const add = jest.fn(() => 3);
+
+test('Fake Test', () => {
+  expect(true).toBeTruthy();
 });
+
+test('Fake TEst2', () => {
+  expect(add(1,2)).toEqual(3);
+  expect(add).toHaveBeenCalledTimes(1);
+  expect(add).toHaveBeenCalledWith(1,2);
+})

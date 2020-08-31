@@ -3,6 +3,9 @@
 #.mvn
 /.mvn
 
+#.cert
+/.cert
+
 # dependencies
 /node_modules
 /.pnp
